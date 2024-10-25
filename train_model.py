@@ -12,7 +12,7 @@ from ml.model import (
     save_model,
     train_model,
 )
-project_path = "\\wsl.localhost\Ubuntu\home\lhan\Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
+project_path = "//wsl.localhost/Ubuntu/home/lhan/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
 data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
 data = pd.read_csv(data_path)
@@ -33,7 +33,7 @@ cat_features = [
     "native-country",
 ]
 
-#using the process_data function to process the data.
+#using the process_data function to process the data for train and test.
 X_train, y_train, encoder, lb = process_data(
     train,
     categorical_features=cat_features,
