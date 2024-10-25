@@ -14,7 +14,7 @@ from ml.model import (
 )
 
 project_path = (
-    "//wsl.localhost/Ubuntu/home/lhan/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
+     "/home/lhan/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
 )
 data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
