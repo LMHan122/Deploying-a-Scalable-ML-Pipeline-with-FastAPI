@@ -12,7 +12,10 @@ from ml.model import (
     save_model,
     train_model,
 )
-project_path = "//wsl.localhost/Ubuntu/home/lhan/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
+
+project_path = (
+    "//wsl.localhost/Ubuntu/home/lhan/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
+)
 data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
 data = pd.read_csv(data_path)
@@ -33,13 +36,10 @@ cat_features = [
     "native-country",
 ]
 
-#using the process_data function to process the data for train and test.
+# using the process_data function to process the data for train and test.
 X_train, y_train, encoder, lb = process_data(
-    train,
-    categorical_features=cat_features,
-    label='salary',
-    training=True
-    )
+    train, categorical_features=cat_features, label="salary", training=True
+)
 
 X_test, y_test, _, _ = process_data(
     test,
@@ -60,9 +60,7 @@ encoder_path = os.path.join(project_path, "model", "encoder.pkl")
 save_model(encoder, encoder_path)
 
 # load the model
-model = load_model(
-    model_path
-) 
+model = load_model(model_path)
 
 # using the inference function to run the model inferences on the test dataset.
 preds = inference(model, X_test)
@@ -85,7 +83,7 @@ for col in cat_features:
             label="salary",
             encoder=encoder,
             lb=lb,
-            model=model
+            model=model,
         )
         with open("slice_output.txt", "a") as f:
             print(f"{col}: {slicevalue}, Count: {count:,}", file=f)
