@@ -1,30 +1,37 @@
 import pytest
+import pickle
+from train_model import data
+from sklearn.ensemble import RandomForestClassifier
 
-# TODO: add necessary import
 
-
-# TODO: implement the first test. Change the function name and input as needed
 def test_one():
     """
-    # add description for the first test
+    Test if the model pickle file loads correctly.
     """
-    # Your code here
-    pass
+    pickle_result = False
+    try:
+        with open("model/model.pkl", "rb") as f:
+            pickle.load(f)
+        pickle_result = True
+    except:
+        print("Error loading pickle file in test_ml.py")
+
+    assert pickle_result == True
 
 
-# TODO: implement the second test. Change the function name and input as needed
 def test_two():
     """
-    # add description for the second test
+    Verifying there are 15 columns in the loaded dataset.
     """
-    # Your code here
-    pass
+    column_count = 15
+    assert len(data.columns) == column_count
 
 
-# TODO: implement the third test. Change the function name and input as needed
 def test_three():
     """
-    # add description for the third test
+    Testing if the model is a RandomForestClassifier.
     """
-    # Your code here
-    pass
+    with open("model/model.pkl", "rb") as f:
+        model = pickle.load(f)
+
+    assert isinstance(model, RandomForestClassifier)
